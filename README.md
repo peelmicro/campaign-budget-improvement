@@ -1,6 +1,12 @@
-# Campaign Budget Distribution
+# Campaign Budget Distribution (Improvement Version)
 
-A full-stack application that distributes advertising campaign budgets across channels (Video, Display, Social) based on optimization goals. Built as an Nx monorepo with NestJS backend and Angular frontend.
+> [!IMPORTANT]
+> **This repository is a refactored "improvement version" of the original solution.** 
+> It introduces production-ready features like true Observability (Correlation IDs, JSON logs), database schema normalization (Soft Deletes, foreign keys), stateless RxJS/Signal patterns, and Atomic Database Transactions.
+> 
+> 👉 **[Read the full breakdown of improvements here](./doc/applied-changes-for-improvement.md)**
+
+A full-stack application that distributes advertising campaign budgets across channels (Video, Display, Social) based on optimization goals. This version has been significantly refactored to demonstrate modern, enterprise-grade NestJS and Angular 21 patterns.
 
 ## Technology Stack
 
