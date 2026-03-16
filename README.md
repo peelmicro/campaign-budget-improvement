@@ -15,7 +15,7 @@ A full-stack application that distributes advertising campaign budgets across ch
 | NestJS | 11 | Backend framework with TypeORM |
 | Angular | 21 | Signals, Standalone components, Zoneless + RxJS Observables |
 | TypeORM | latest | `synchronize: true` for dev |
-| MySQL | 8.4 | Isolated Docker container `campaign_budget_interview` |
+| MySQL | 8.4 | Isolated Docker container `campaign_budget_improvement` |
 | NestJS Plugins | | `nestjs-pino` (Logging), `nestjs-cls` (Correlation IDs), `@nestjs/terminus` (Health Probes), `@nestjs/axios` (3rd Party Integrations) |
 | Tailwind CSS | v4 | Utility-first styling |
 | Vitest | 4.x | Test runner for both API and Web |

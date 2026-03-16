@@ -213,7 +213,7 @@ Whenever you run applications inside containers mapping ports and volumes to the
 ### The Implementation
 To ensure this interview-specific project does not interfere with the original `campaign-budget` source repository, we completely isolated its MySQL context.
 
-1. **Docker Compose:** We changed the initialization parameter `MYSQL_DATABASE` from `campaign_budget` to a uniquely named `campaign_budget_interview`.
+1. **Docker Compose:** We changed the initialization parameter `MYSQL_DATABASE` from `campaign_budget` to a uniquely named `campaign_budget_improvement`.
 2. **Dynamic Volumes:** We used `docker-compose down -v` to destroy the legacy unnamed/shared volume and allow a localized clean startup.
 3. **App Fallbacks:** We reconfigured the `app.module.ts` TypeORM configurations to target the new secure schema.
 
