@@ -2,6 +2,8 @@
 
 ## 1. Combining Signals + RxJS — the modern pattern
 
+🔗 **View Code:** [`web/src/app/services/campaign.service.ts`](../web/src/app/services/campaign.service.ts) | [`web/src/app/pages/campaign-list/campaign-list.component.ts`](../web/src/app/pages/campaign-list/campaign-list.component.ts)
+
 ### Context: Why this change matters for your interview
 The original implementation of `CampaignService` acted as a **stateful store**—meaning the service itself held data (arrays of campaigns and currencies) in its own memory. This forced the service to manage the lifecycle of that data, rather than just fetching it. This is a common pattern in older Angular applications (often relying on `BehaviorSubject`, which is a type of Observable that remembers the last emitted value and instantly sends it to new subscribers so they have the current state), but in Angular 21, the officially recommended pattern is: **RxJS for async/HTTP, Signals for state.**
 
@@ -116,6 +118,8 @@ export class CampaignListComponent implements OnInit {
 
 ## 2. Observability: Structured Logging & Correlation IDs
 
+🔗 **View Code:** [`apps/api/src/common/interceptors/logging.interceptor.ts`](../apps/api/src/common/interceptors/logging.interceptor.ts) | [`apps/api/src/common/filters/http-exception.filter.ts`](../apps/api/src/common/filters/http-exception.filter.ts) | [`apps/api/src/main.ts`](../apps/api/src/main.ts)
+
 ### Context: Answering "Post-Release & Troubleshooting" Questions
 
 If asked *"How do you monitor an application in production?"* or *"How do you troubleshoot a bug a user reported?"*, you should talk about **Observability**. Log files filled with `console.log('User created: John')` are impossible to search effectively in large systems. 
@@ -145,6 +149,8 @@ We replaced the default NestJS console logger with `nestjs-pino`. We configured 
 
 ## 3. Database Refactoring: Normalization & Soft Deletes
 
+🔗 **View Code:** [`apps/api/src/client/client.entity.ts`](../apps/api/src/client/client.entity.ts) | [`apps/api/src/campaign/campaign.entity.ts`](../apps/api/src/campaign/campaign.entity.ts)
+
 ### Context: Answering "Database Design & Evolving Changing Requirements"
 
 Interviews often probe your understanding of database design, especially how you handle relationships and data safety.
@@ -171,6 +177,8 @@ Interviews often probe your understanding of database design, especially how you
 
 ## 4. 3rd Party API Integration & Testing
 
+🔗 **View Code:** [`apps/api/src/currency/exchange-rate.service.ts`](../apps/api/src/currency/exchange-rate.service.ts) | [`apps/api/src/currency/exchange-rate.service.spec.ts`](../apps/api/src/currency/exchange-rate.service.spec.ts)
+
 ### Context: Answering "How do you work with 3rd Party Vendors & APIs?"
 
 Interviews often ask how you handle external data sources, especially when those sources are out of your control (they might go down, have rate limits, or return unexpected formats).
@@ -196,6 +204,8 @@ We wrote comprehensive Vitest unit tests for both the new `Client` entity and th
 
 ## 5. Environment & Database Isolation
 
+🔗 **View Code:** [`docker-compose.yml`](../docker-compose.yml) | [`apps/api/src/app/app.module.ts`](../apps/api/src/app/app.module.ts)
+
 ### Context: Avoiding Configuration Conflicts
 
 Whenever you run applications inside containers mapping ports and volumes to the host (like `3306` for MySQL), you run the risk of namespace collisions with other local projects.
@@ -212,6 +222,8 @@ To ensure this interview-specific project does not interfere with the original `
 ---
 
 ## 6. Global Exception Filters & Health Checks
+
+🔗 **View Code:** [`apps/api/src/health/health.controller.ts`](../apps/api/src/health/health.controller.ts) | [`apps/api/src/common/filters/http-exception.filter.ts`](../apps/api/src/common/filters/http-exception.filter.ts)
 
 ### Context: Answering "Post Release & Server Stability" 
 
@@ -234,6 +246,8 @@ When code throws a 500 Internal Server error, inexperienced developers often acc
 ---
 
 ## 7. Atomic Database Transactions
+
+🔗 **View Code:** [`apps/api/src/campaign/campaign.service.ts`](../apps/api/src/campaign/campaign.service.ts) | [`apps/api/src/distribution/distribution.service.ts`](../apps/api/src/distribution/distribution.service.ts)
 
 ### Context: Answering "How do you ensure data consistency?"
 
