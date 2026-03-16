@@ -28,32 +28,39 @@ export class CampaignService {
   }
 
   async create(dto: CreateCampaignDto): Promise<Campaign> {
-    return this.dataSource.transaction(async (manager) => {
+    const id = await this.dataSource.transaction(async (manager) => {
       const campaign = manager.create(Campaign, dto);
       const saved = await manager.save(Campaign, campaign);
       const full = await manager.findOneBy(Campaign, { id: saved.id });
       await this.distributionService.distribute(full!, manager);
-      return this.findOne(saved.id);
+      return saved.id;
     });
+    return this.findOne(id);
   }
 
   async update(id: number, dto: UpdateCampaignDto): Promise<Campaign> {
-    return this.dataSource.transaction(async (manager) => {
-      const campaign = await this.findOne(id);
+    await this.dataSource.transaction(async (manager) => {
+      const campaign = await manager.findOneBy(Campaign, { id });
+      if (!campaign) {
+        throw new NotFoundException(`Campaign with ID ${id} not found`);
+      }
       Object.assign(campaign, dto);
       await manager.save(Campaign, campaign);
       const full = await manager.findOneBy(Campaign, { id });
       await this.distributionService.distribute(full!, manager);
-      return this.findOne(id);
     });
+    return this.findOne(id);
   }
 
   async redistribute(id: number): Promise<Campaign> {
-    return this.dataSource.transaction(async (manager) => {
-      const campaign = await this.findOne(id);
+    await this.dataSource.transaction(async (manager) => {
+      const campaign = await manager.findOneBy(Campaign, { id });
+      if (!campaign) {
+        throw new NotFoundException(`Campaign with ID ${id} not found`);
+      }
       await this.distributionService.distribute(campaign, manager);
-      return this.findOne(id);
     });
+    return this.findOne(id);
   }
 
   async remove(id: number): Promise<void> {

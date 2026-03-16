@@ -118,10 +118,13 @@ describe('CampaignService', () => {
 
   describe('update', () => {
     it('should update the campaign and call distribute inside a transaction', async () => {
+      const campaignCopy = { ...mockCampaign };
       const updated = { ...mockCampaign, budget: 20000 };
-      mockRepository.findOneBy.mockResolvedValue({ ...mockCampaign });
+      
+      mockEntityManager.findOneBy.mockResolvedValueOnce(campaignCopy); 
+      mockEntityManager.findOneBy.mockResolvedValueOnce(updated);
       mockEntityManager.save.mockResolvedValue(updated);
-      mockEntityManager.findOneBy.mockResolvedValue(updated);
+      mockRepository.findOneBy.mockResolvedValue(updated);
 
       const result = await service.update(1, { budget: 20000 });
       expect(result).toEqual(updated);
@@ -131,7 +134,7 @@ describe('CampaignService', () => {
     });
 
     it('should throw NotFoundException when updating non-existent campaign', async () => {
-      mockRepository.findOneBy.mockResolvedValue(null);
+      mockEntityManager.findOneBy.mockResolvedValue(null);
       await expect(service.update(999, { budget: 20000 })).rejects.toThrow(
         NotFoundException,
       );
@@ -140,7 +143,8 @@ describe('CampaignService', () => {
 
   describe('redistribute', () => {
     it('should call distribute inside a transaction and return the campaign', async () => {
-      mockRepository.findOneBy.mockResolvedValue(mockCampaign);
+      mockEntityManager.findOneBy.mockResolvedValue({ ...mockCampaign });
+      mockRepository.findOneBy.mockResolvedValue({ ...mockCampaign });
 
       const result = await service.redistribute(1);
       expect(result).toEqual(mockCampaign);
@@ -149,7 +153,7 @@ describe('CampaignService', () => {
     });
 
     it('should throw NotFoundException for non-existent campaign', async () => {
-      mockRepository.findOneBy.mockResolvedValue(null);
+      mockEntityManager.findOneBy.mockResolvedValue(null);
       await expect(service.redistribute(999)).rejects.toThrow(NotFoundException);
     });
   });
