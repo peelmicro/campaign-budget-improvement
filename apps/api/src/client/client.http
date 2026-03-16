@@ -1,0 +1,11 @@
+### List all clients
+GET http://localhost:3000/api/clients
+
+### Get client by ID (Google)
+GET http://localhost:3000/api/clients/1
+
+### Get client by ID (Apple)
+GET http://localhost:3000/api/clients/2
+
+### Get non-existent client by ID (should return 404)
+GET http://localhost:3000/api/clients/999

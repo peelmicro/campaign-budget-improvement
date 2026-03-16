@@ -1,0 +1,8 @@
+### Re-distribute budget for campaign 1
+POST http://localhost:3000/api/campaigns/1/distribute
+
+### Re-distribute budget for campaign 2
+POST http://localhost:3000/api/campaigns/2/distribute
+
+### Re-distribute for non-existent campaign (should return 404)
+POST http://localhost:3000/api/campaigns/999/distribute

@@ -1,0 +1,15 @@
+### Health Check Ping
+GET http://localhost:3000/api/health
+
+### Intentional 404 (To test Exception Filter correlation ID masking)
+GET http://localhost:3000/api/this-does-not-exist
+
+### Intentional Bad Request (To test validation errors with Exception Filter)
+POST http://localhost:3000/api/campaigns
+Content-Type: application/json
+
+{
+  "code": "",
+  "budget": -100,
+  "goal": "INVALID"
+}

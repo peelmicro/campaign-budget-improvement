@@ -1,0 +1,85 @@
+### List all campaigns
+GET http://localhost:3000/api/campaigns
+
+### Get campaign by ID
+GET http://localhost:3000/api/campaigns/1
+
+### Create a campaign (REACH goal)
+POST http://localhost:3000/api/campaigns
+Content-Type: application/json
+
+{
+  "code": "CAMP-001",
+  "clientId": 1,
+  "managerName": "John Doe",
+  "budget": 10000,
+  "currencyId": 1,
+  "days": 30,
+  "fromDate": "2026-04-01",
+  "toDate": "2026-04-30",
+  "goal": "REACH"
+}
+
+### Create a campaign (ENGAGEMENT goal)
+POST http://localhost:3000/api/campaigns
+Content-Type: application/json
+
+{
+  "code": "CAMP-002",
+  "clientId": 2,
+  "managerName": "Jane Smith",
+  "budget": 5000,
+  "currencyId": 1,
+  "days": 14,
+  "fromDate": "2026-05-01",
+  "toDate": "2026-05-14",
+  "goal": "ENGAGEMENT"
+}
+
+### Create a campaign (BALANCED goal)
+POST http://localhost:3000/api/campaigns
+Content-Type: application/json
+
+{
+  "code": "CAMP-003",
+  "clientId": 3,
+  "managerName": "Bob Wilson",
+  "budget": 15000,
+  "currencyId": 1,
+  "days": 60,
+  "fromDate": "2026-06-01",
+  "toDate": "2026-07-30",
+  "goal": "BALANCED"
+}
+
+### Update a campaign (change goal)
+PATCH http://localhost:3000/api/campaigns/1
+Content-Type: application/json
+
+{
+  "goal": "ENGAGEMENT"
+}
+
+### Update a campaign (change budget)
+PATCH http://localhost:3000/api/campaigns/1
+Content-Type: application/json
+
+{
+  "budget": 20000
+}
+
+### Delete a campaign
+DELETE http://localhost:3000/api/campaigns/1
+
+### Get non-existent campaign (should return 404)
+GET http://localhost:3000/api/campaigns/999
+
+### Create campaign with invalid data (should return 400)
+POST http://localhost:3000/api/campaigns
+Content-Type: application/json
+
+{
+  "code": "",
+  "budget": -100,
+  "goal": "INVALID"
+}

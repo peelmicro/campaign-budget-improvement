@@ -1,0 +1,5 @@
+export enum EngagementRank {
+  HIGH = 'HIGH',
+  MEDIUM = 'MEDIUM',
+  LOW = 'LOW',
+}

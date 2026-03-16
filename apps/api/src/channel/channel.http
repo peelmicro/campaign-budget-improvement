@@ -1,0 +1,23 @@
+### List all channels
+GET http://localhost:3000/api/channels
+
+### Get channel by ID (Video)
+GET http://localhost:3000/api/channels/1
+
+### Get channel by ID (Display)
+GET http://localhost:3000/api/channels/2
+
+### Get channel by ID (Social)
+GET http://localhost:3000/api/channels/3
+
+### Get channel by code
+GET http://localhost:3000/api/channels/code/VIDEO
+
+### Get channel by code (lowercase - should work)
+GET http://localhost:3000/api/channels/code/display
+
+### Get non-existent channel by ID (should return 404)
+GET http://localhost:3000/api/channels/999
+
+### Get non-existent channel by code (should return 404)
+GET http://localhost:3000/api/channels/code/UNKNOWN

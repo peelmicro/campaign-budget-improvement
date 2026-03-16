@@ -1,0 +1,29 @@
+### List all currencies
+GET http://localhost:3000/api/currencies
+
+### Get currency by ID (USD)
+GET http://localhost:3000/api/currencies/1
+
+### Get currency by ID (EUR)
+GET http://localhost:3000/api/currencies/2
+
+### Get currency by ID (GBP)
+GET http://localhost:3000/api/currencies/3
+
+### Get currency by code (USD)
+GET http://localhost:3000/api/currencies/code/USD
+
+### Get currency by code (lowercase - should work)
+GET http://localhost:3000/api/currencies/code/eur
+
+### Get non-existent currency by ID (should return 404)
+GET http://localhost:3000/api/currencies/999
+
+### Get non-existent currency by code (should return 404)
+GET http://localhost:3000/api/currencies/code/XYZ
+
+### Get live exchange rates for base currency (USD)
+GET http://localhost:3000/api/currencies/rates/USD
+
+### Get live exchange rates for base currency (EUR)
+GET http://localhost:3000/api/currencies/rates/EUR

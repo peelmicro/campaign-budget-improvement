@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.github
+.nx
+tmp
+*.log
+.angular
+.vscode
+.idea
